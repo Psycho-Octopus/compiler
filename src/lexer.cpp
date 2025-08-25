@@ -25,7 +25,7 @@ std::vector<Token> tokenize(const std::string &str) {
         buf.clear();
         continue;
       } else {
-        std::cerr << "unreconized thingy" << std::endl;
+        std::cerr << "unknown character" << std::endl;
         exit(1);
       }
     }
@@ -43,6 +43,15 @@ std::vector<Token> tokenize(const std::string &str) {
     else if (c == ';') {
       tokens.push_back({.type = TokenType::SEMICOLON});
     } 
+    else if (c == '?') {
+      tokens.push_back({.type = TokenType::QUESTION});
+    }
+    else if (c == '(') {
+      tokens.push_back({.type = TokenType::LEFT_PAREN});
+    }
+    else if (c == ')') {
+      tokens.push_back({.type = TokenType::RIGHT_PAREN});
+    }
     else if (std::isspace(c)) {
       continue;
     } else {

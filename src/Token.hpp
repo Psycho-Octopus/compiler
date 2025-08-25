@@ -2,7 +2,6 @@
 
 #include <optional>
 #include <string>
-#include <vector>
 
 enum class TokenType {
   // Single-character tokens.
