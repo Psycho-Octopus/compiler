@@ -3,9 +3,11 @@
 #include <ostream>
 #include <sstream>
 #include <vector>
+
 #include "Token.hpp"
-#include "parser/parser.hpp"
+#include "generator/gen.hpp"
 #include "lexer/lexer.hpp"
+#include "parser/parser.hpp"
 
 int main(int argc, char **argv) {
   if (argc != 2) {
@@ -22,10 +24,17 @@ int main(int argc, char **argv) {
   }
 
   lexer lexer;
-  parser parser;
-
+  generator gen;
 
   std::vector<Token> tokens = lexer.tokenize(contents);
+  std::string output = gen.codeGen(tokens);
+
+  system("touch out.ssa");
+  std::fstream out("out.ssa");
+  out << output;
+
+  system("qbe out.ssa > out.s");
+  system("gcc out.s -o out");
 
   return 0;
 }

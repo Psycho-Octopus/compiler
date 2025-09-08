@@ -115,6 +115,8 @@ enum TokenType {
 
   WHILE,
 
+  EXIT,
+
   // End of file
   EOF_
 };

@@ -1,12 +1,12 @@
-#include "lexer.hpp"
-#include "../Token.hpp"
 #include <cctype>
 #include <cstddef>
 #include <string>
 #include <vector>
 
+#include "../Token.hpp"
+#include "lexer.hpp"
 
-std::vector<Token> tokenize(const std::string& str) {
+std::vector<Token> lexer::tokenize(const std::string &str) {
   std::vector<Token> tokens;
   std::string buf;
 
@@ -29,22 +29,23 @@ std::vector<Token> tokenize(const std::string& str) {
     }
 
     if (std::isdigit(c)) {
-        buf.push_back(c);
+      buf.push_back(c);
 
-        while (i + 1 < str.length() && std::isdigit(str[i + 1])) {
-            i++;
-            buf.push_back(str[i]);
-        }
+      while (i + 1 < str.length() && std::isdigit(str[i + 1])) {
+        i++;
+        buf.push_back(str[i]);
+      }
 
-        tokens.push_back({.type = TokenType::INT, .value = buf});
-        buf.clear();
+      tokens.push_back({.type = TokenType::INT, .value = buf});
+      buf.clear();
     }
 
     if (std::isspace(c)) {
-        continue;
+      continue;
     }
     switch (c) {
-        case ';': tokens.push_back({.type = TokenType::SEMICOLON});
+    case ';':
+      tokens.push_back({.type = TokenType::SEMICOLON});
     }
   }
 
