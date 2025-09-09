@@ -33,8 +33,8 @@ int main(int argc, char **argv) {
   std::fstream out("out.ssa");
   out << output;
 
-  system("qbe out.ssa > out.s");
-  system("gcc out.s -o out");
+  /*system("qbe out.ssa > out.s");
+  system("gcc out.s -o out");*/
 
   return 0;
 }

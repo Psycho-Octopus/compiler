@@ -8,17 +8,29 @@ std::string generator::codeGen(const std::vector<Token> tokens) {
   std::stringstream contents;
 
   // starting point
-  contents << "export function w $main() {" << "\n" << "@start" << "\n";
+  contents << "export function w $main() {" << "\n" << "@start" << "\n    ";
 
   for (size_t i = 0; i < tokens.size(); i++) {
     if (tokens[i].type == TokenType::RETURN) {
-      contents << "    ret ";
+      contents << "ret ";
+      if (tokens[i + 1].type == TokenType::IDENTIFIER) {
+        contents << "%";
+      }
     }
     if (tokens[i].type == TokenType::INT && tokens[i].value.has_value()) {
       contents << tokens[i].value.value();
     }
     if (tokens[i].type == TokenType::SEMICOLON) {
-      contents << "\n";
+      contents << "\n    ";
+    }
+    if (tokens[i].type == TokenType::VAR) {
+      contents << "%";
+    }
+    if (tokens[i].type == TokenType::IDENTIFIER) {
+      contents << tokens[i].value.value();
+    }
+    if (tokens[i].type == TokenType::EQUAL) {
+      contents << " =w copy ";
     }
   }
 

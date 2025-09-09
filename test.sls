@@ -1,1 +1,2 @@
-return 0;
+var x = 2;
+return x;

@@ -23,6 +23,10 @@ std::vector<Token> lexer::tokenize(const std::string &str) {
 
       if (buf == "return") {
         tokens.push_back({.type = TokenType::RETURN});
+      } else if (buf == "var") {
+        tokens.push_back({.type = TokenType::VAR});
+      } else {
+        tokens.push_back({.type = TokenType::IDENTIFIER, .value = buf});
       }
 
       buf.clear();
@@ -40,12 +44,17 @@ std::vector<Token> lexer::tokenize(const std::string &str) {
       buf.clear();
     }
 
-    if (std::isspace(c)) {
-      continue;
-    }
     switch (c) {
     case ';':
       tokens.push_back({.type = TokenType::SEMICOLON});
+      break;
+    case '=':
+      tokens.push_back({.type = TokenType::EQUAL});
+      break;
+    }
+
+    if (std::isspace(c)) {
+      continue;
     }
   }
 
