@@ -48,6 +48,8 @@ enum TokenType {
   // '!='
   BANG_EQUAL,
 
+  // '//'
+  SLASH_SLASH,
   // '='
   EQUAL,
 

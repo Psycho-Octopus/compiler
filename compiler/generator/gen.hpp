@@ -7,5 +7,5 @@
 class generator {
 public:
   std::string codeGen(const std::vector<Token> tokens);
-  std::string optimise(const std::string code);
+  std::string optimize(const std::string code);
 };

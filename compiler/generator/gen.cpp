@@ -32,6 +32,9 @@ std::string generator::codeGen(const std::vector<Token> tokens) {
     if (tokens[i].type == TokenType::EQUAL) {
       contents << " =w copy ";
     }
+    if (tokens[i].type == TokenType::SLASH_SLASH) {
+      contents << " #";
+    }
   }
 
   contents << "}\n";
@@ -39,4 +42,8 @@ std::string generator::codeGen(const std::vector<Token> tokens) {
   return contents.str();
 }
 
-std::string generator::optimise(const std::string str) {}
+std::string checkCode() {
+  /* This stage is where we do checks for errors in the generated code, then
+   * return a string if it has no errors or return 1 and show all the errors.
+   */
+}
