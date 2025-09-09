@@ -1,7 +1,7 @@
 ## QUBE compiler
-compiler...
+A poorly written compiler...
 
-Little side project, i might come back to it.
+Just a little side project, I might come back to it.
 
 ## Example
 ``` go
