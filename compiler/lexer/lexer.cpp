@@ -6,6 +6,7 @@
 #include "../Token.hpp"
 #include "lexer.hpp"
 
+// TODO: add more token detection
 std::vector<Token> lexer::tokenize(const std::string &str) {
   std::vector<Token> tokens;
   std::string buf;
@@ -51,11 +52,7 @@ std::vector<Token> lexer::tokenize(const std::string &str) {
     case '=':
       tokens.push_back({.type = TokenType::EQUAL});
       break;
-    case '//':
-      tokens.push_back({.type = TokenType::SLASH_SLASH});
-      break;
     }
-
     if (std::isspace(c)) {
       continue;
     }
